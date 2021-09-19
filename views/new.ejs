@@ -2,7 +2,7 @@
 
     <h1>Add A New Item</h1>
 
-    <form action="/items" method="POST" enctype="multipart/form-data">
+    <form action="/items" method="POST">
         <label for="name">Item Name</label>
         <input type="text" name="name" id="name" placeholder="Item name" required>
 
@@ -15,7 +15,7 @@
         <label for="name">Item Status</label>
         <input type="text" name=status id="status" placeholder="Item status" required>
 
-        <input type="file" name="image">
+
 
         <button>Add Item</button>
     </form>
