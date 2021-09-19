@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+    <h1>Add A New Item</h1>
+
+    <form action="/items" method="POST" enctype="multipart/form-data">
+        <label for="name">Item Name</label>
+        <input type="text" name="name" id="name" placeholder="Item name" required>
+
+        <label for="name">Item Price</label>
+        <input type="number" name="price" id="price" placeholder="Item price" required>
+
+        <label for="name">Item Description</label>
+        <input type="text" name=description id="description" placeholder="Item description" required>
+
+        <label for="name">Item Status</label>
+        <input type="text" name=status id="status" placeholder="Item status" required>
+
+        <input type="file" name="image">
+
+        <button>Add Item</button>
+    </form>
+
+
+    <button class="btn btn-dark mt-3"><a href="/items">Back</a></button>

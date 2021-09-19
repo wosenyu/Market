@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+    <h1>Edit <%= item.name %>
+    </h1>
+
+    <a href="/items/<%=item._id%> "> Cancel</a>
+
+    <form action="/items/<%= item._id %>?_method=PUT" method="POST">
+        <div class="form-row">
+            <div class="col">
+                <label for="name">Item Name</label>
+                <input type="text" name="name" class="form-control" placeholder="First name" value="<%=item.name%>">
+            </div>
+            <div class="col">
+                <label for="name">Item Price</label>
+                <input type="text" name="price" class="form-control" placeholder="Price" value="<%=item.price  %>">
+            </div>
+            <div class="col">
+                <label for="name">Item Price</label>
+                <input type="text" name="description" class="form-control" placeholder="description"
+                    value="<%=item.description  %>">
+            </div>
+            <div class="col">
+                <label for="name">Item Price</label>
+                <input type="text" name="status" class="form-control" placeholder="Price" value="<%=item.status%>">
+            </div>
+        </div>
+        <button class="btn btn-primary mt-3">Edit Item</button>
+    </form>
