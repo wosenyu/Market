@@ -30,12 +30,33 @@
           <a class="nav-link" href="/items">Items</a>
           <a class="nav-link" href="/items/new">Add Item</a>
         </div>
+        <div class="navbar-nav ms-auto">
+          <% if(!signInUser){ %>
+            <a class="nav-link " href="/register">Sign Up</a>
+            <a class="nav-link" href="/login">Log In</a>
+            <% }else {%>
+              <a class="nav-link" href="/logout">Log Out</a>
+              <% } %>
+        </div>
       </div>
     </div>
   </nav>
 
   <main class="container mt-5">
-    <%- body %>
+    <% if(success && success.length) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% } %>
+        <% if(error && error.length) { %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= error %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <% } %>
+
+            <%- body %>
   </main>
 
 
