@@ -77,6 +77,7 @@ app.get('/items/new', isLoggedIn, (req, res) => {
 // create new item
 app.post('/items', isLoggedIn, async (req, res) => {
     const newItem = new Item(req.body)
+    newItem.author = req.user._id
     await newItem.save();
     req.flash('success', 'Successfully add a new item')
     res.redirect('/items')
@@ -86,7 +87,8 @@ app.post('/items', isLoggedIn, async (req, res) => {
 app.get('/items/:id', async (req, res) => {
 
     const { id } = req.params;
-    const item = await Item.findById(id)
+    const item = await Item.findById(id).populate('author')
+    console.log(item)
     if (!item) {
         req.flash('error', "Cannot find Item")
         return res.redirect('/items')

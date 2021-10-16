@@ -9,7 +9,8 @@
     </p>
     <p>Status: <%= item.status %>
     </p>
-
+    <p>Sold By: <%= item.author.username %>
+    </p>
     <a href="/items"> Back to Item</a>
     <a href="/items/<%= item._id %>/edit"> Edit Item</a>
 

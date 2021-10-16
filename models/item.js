@@ -1,24 +1,31 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const itemSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         require: true
     },
-    price:{
+    price: {
         type: Number,
         require: true,
         min: 0
     },
 
-    description:{
+    description: {
         type: String,
         require: true
     },
 
-    status:{
+    status: {
         type: String,
         require: true
+    },
+
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+
     }
 
 })

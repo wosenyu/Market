@@ -19,16 +19,16 @@ const seedItem = [
         price: 5.00,
         description: 'Furniture',
         status: 'sold'
-        
+
     },
 
     {
+        author: '6158b09ea85d2d3f7f1b6604',
         name: 'Tv',
         price: 100.00,
         description: 'Electronic',
         status: 'In stock'
-        
     }
 ]
-    
+
 Item.insertMany(seedItem);
