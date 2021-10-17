@@ -9,7 +9,8 @@ const methodOverride = require('method-override')
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
-const { isLoggedIn } = require('./middleware');
+const { isLoggedIn, isAuthor } = require('./middleware');
+
 
 const Item = require('./models/item');
 //const market = require('./routes/market')
@@ -88,7 +89,6 @@ app.get('/items/:id', async (req, res) => {
 
     const { id } = req.params;
     const item = await Item.findById(id).populate('author')
-    console.log(item)
     if (!item) {
         req.flash('error', "Cannot find Item")
         return res.redirect('/items')
@@ -98,7 +98,7 @@ app.get('/items/:id', async (req, res) => {
 })
 
 // route for editing
-app.get('/items/:id/edit', isLoggedIn, async (req, res) => {
+app.get('/items/:id/edit', isLoggedIn, isAuthor, async (req, res) => {
     const { id } = req.params;
     const item = await Item.findById(id)
     if (!item) {
