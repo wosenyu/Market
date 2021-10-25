@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -10,7 +13,9 @@ const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
 const { isLoggedIn, isAuthor } = require('./middleware');
-
+const multer = require('multer');
+const { storage } = require('./cloud');
+const upload = multer({ storage })
 
 const Item = require('./models/item');
 //const market = require('./routes/market')
@@ -76,10 +81,12 @@ app.get('/items/new', isLoggedIn, (req, res) => {
 })
 
 // create new item
-app.post('/items', isLoggedIn, async (req, res) => {
+app.post('/items', upload.array('image'), isLoggedIn, async (req, res) => {
     const newItem = new Item(req.body)
+    Item.images = req.files.map(f => ({ url: f.path, filename: f.filename }))
     newItem.author = req.user._id
     await newItem.save();
+    console.log(Item)
     req.flash('success', 'Successfully add a new item')
     res.redirect('/items')
 })

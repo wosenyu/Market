@@ -25,6 +25,12 @@ const seedItem = [
     {
         author: '6158b09ea85d2d3f7f1b6604',
         name: 'Tv',
+        images: [
+            {
+                url: String,
+                filename: String
+            }
+        ],
         price: 100.00,
         description: 'Electronic',
         status: 'In stock'

@@ -3,25 +3,29 @@
     <h1>
         <%= item.name %>
     </h1>
-    <p>Price: $<%= item.price %>
-    </p>
-    <p>Description: <%= item.description %>
-    </p>
-    <p>Status: <%= item.status %>
-    </p>
-    <p>Sold By: <%= item.author.username %>
-    </p>
-    <a href="/items"> Back to Item</a>
+    <% for(let img of item.images){ %>
 
-    <% if(signInUser && item.author.equals(signInUser._id)){ %>
-        <a href="/items/<%= item._id %>/edit"> Edit Item</a>
-
-        <form action="/items/<%=item._id %>?_method=DELETE " method="POST">
-            <button class="btn btn-danger">Delete</button>
-        </form>
-
+        <p><img src="<%= img.url  %> " alt=""></p>
         <% } %>
-            <!-- <a href="/items/<%= item._id %>/edit"> Edit Item</a>
+            <p>Price: $<%= item.price %>
+            </p>
+            <p>Description: <%= item.description %>
+            </p>
+            <p>Status: <%= item.status %>
+            </p>
+            <p>Sold By: <%= item.author.username %>
+            </p>
+            <a href="/items"> Back to Item</a>
+
+            <% if(signInUser && item.author.equals(signInUser._id)){ %>
+                <a href="/items/<%= item._id %>/edit"> Edit Item</a>
+
+                <form action="/items/<%=item._id %>?_method=DELETE " method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+
+                <% } %>
+                    <!-- <a href="/items/<%= item._id %>/edit"> Edit Item</a>
 
     <form action="/items/<%=item._id %>?_method=DELETE " method="POST">
         <button class="btn btn-danger">Delete</button>
