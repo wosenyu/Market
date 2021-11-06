@@ -81,12 +81,12 @@ app.get('/items/new', isLoggedIn, (req, res) => {
 })
 
 // create new item
-app.post('/items', upload.array('image'), isLoggedIn, async (req, res) => {
+app.post('/items', isLoggedIn, upload.array('image'), async (req, res) => {
     const newItem = new Item(req.body)
-    Item.images = req.files.map(f => ({ url: f.path, filename: f.filename }))
+    newItem.images = req.files.map(f => ({ url: f.path, filename: f.filename }))
     newItem.author = req.user._id
     await newItem.save();
-    console.log(Item)
+    console.log(newItem)
     req.flash('success', 'Successfully add a new item')
     res.redirect('/items')
 })
